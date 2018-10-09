@@ -81,27 +81,33 @@ public class MesaData {
     } 
     
     public void actualizarMesa(Mesa mesa){
-        
+    
         try {
-            String sql = "UPDATE mesa SET nro_mesa = ? , capacidad = ? , estado = ? ;";
+            
+            String sql = "UPDATE mesa SET nro_mesa = ?, capacidad = ? , estado =? WHERE id_mesa = ?;";
 
-            PreparedStatement statement=connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setInt(1 , mesa.getNro_mesa());
-            statement.setInt(2 , mesa.getCapacidad());
-            statement.setBoolean(3 , mesa.getEstado());
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            statement.setInt(1, mesa.getNro_mesa());
+            statement.setInt(2, mesa.getCapacidad());
+            statement.setBoolean(3, mesa.getEstado());
+            statement.setInt(4, mesa.getId_mesa());
             statement.executeUpdate();
             
-            
+          
+            statement.close();
+    
         } catch (SQLException ex) {
-            Logger.getLogger(MesaData.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error al actualizar una mesa: " + ex.getMessage());
         }
-        
+    
     }
+    
+    
     public Mesa buscarMesa(int nroMesa){
     Mesa mesa=null;
     try{
         
-        String sql = "SELEC * FROM mesa WHERE nro_mesa =?;";
+        String sql = "SELECT * FROM mesa WHERE nro_mesa = ?;";
         
         PreparedStatement statement = connection.prepareStatement(sql ,Statement.RETURN_GENERATED_KEYS);
         statement.setInt(1, nroMesa);
@@ -110,6 +116,7 @@ public class MesaData {
         
         while(resultset.next()){
             mesa = new Mesa();
+            mesa.setId_mesa(resultset.getInt("id_mesa"));
             mesa.setNro_mesa(resultset.getInt("nro_mesa"));
             mesa.setCapacidad(resultset.getInt("capacidad"));
             mesa.setEstado(resultset.getBoolean("estado"));
@@ -119,8 +126,28 @@ public class MesaData {
     } catch (SQLException ex){
         System.out.println("Error al buscar una mesa: " + ex.getMessage() );
     }
-    
     return mesa;
     }
+    
+     public void borrarMesa(int nroMesa){
+    try {
+            
+            String sql = "DELETE FROM mesa WHERE nro_mesa =?;";
+
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            statement.setInt(1, nroMesa);
+           
+            
+            statement.executeUpdate();
+            
+            
+            statement.close();
+    
+        } catch (SQLException ex) {
+            System.out.println("Error al borrar una mesa: " + ex.getMessage());
+        }
+        
+    
+    } 
     
 }
