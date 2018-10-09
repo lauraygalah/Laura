@@ -5,10 +5,119 @@
  */
 package atenciondelresto;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author lorei
  */
 public class MeseroData {
+     private Connection connection=null;
+
+    public MeseroData(Conexion conexion) throws SQLException {
+        connection = conexion.getConexion();
+    }
     
+    
+    public void guardarMesero(Mesero mesero){
+        try {
+            
+            String sql = "INSERT INTO mesero ( nombre, dni) VALUES ( ? , ? );";
+
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            
+            statement.setString(1, mesero.getNombre());
+            statement.setInt(2, mesero.getDni());
+                        
+            statement.executeUpdate();
+            
+            ResultSet rs = statement.getGeneratedKeys();
+
+            if (rs.next()) {
+                mesero.setId_mesero(rs.getInt(1));
+            } else {
+                System.out.println("No se pudo obtener el id luego de insertar un mesero");
+            }
+            statement.close();
+    
+        } catch (SQLException ex) {
+            System.out.println("Error al insertar un mesero: " + ex.getMessage());
+        }
+    }
+    
+    public List<Mesa> obtenerMesa(){
+       ArrayList<Mesa> mesas = new ArrayList<>();
+
+        try {
+            String sql = "SELECT * FROM mesa;";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            Mesa mesa;
+            while(resultSet.next()){
+                mesa = new Mesa();
+                mesa.setId_mesa(resultSet.getInt("id_mesa"));
+                mesa.setNro_mesa(resultSet.getInt("nro_mesa"));
+                mesa.setCapacidad(resultSet.getInt("capacidad"));
+                mesa.setEstado(resultSet.getBoolean("estado"));
+
+                mesas.add(mesa);
+            }      
+            statement.close();
+        } catch (SQLException ex) {
+            System.out.println("Error al obtener las mesas: " + ex.getMessage());
+        }
+        
+        return mesas;
+    } 
+    
+    public void actualizarMesa(Mesa mesa){
+        
+        try {
+            String sql = "UPDATE mesa SET nro_mesa = ? , capacidad = ? , estado = ? ;";
+
+            PreparedStatement statement=connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            statement.setInt(1 , mesa.getNro_mesa());
+            statement.setInt(2 , mesa.getCapacidad());
+            statement.setBoolean(3 , mesa.getEstado());
+            statement.executeUpdate();
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(MesaData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    public Mesa buscarMesa(int nroMesa){
+    Mesa mesa=null;
+    try{
+        
+        String sql = "SELEC * FROM mesa WHERE nro_mesa =?;";
+        
+        PreparedStatement statement = connection.prepareStatement(sql ,Statement.RETURN_GENERATED_KEYS);
+        statement.setInt(1, nroMesa);
+        
+        ResultSet resultset=statement.executeQuery();
+        
+        while(resultset.next()){
+            mesa = new Mesa();
+            mesa.setNro_mesa(resultset.getInt("nro_mesa"));
+            mesa.setCapacidad(resultset.getInt("capacidad"));
+            mesa.setEstado(resultset.getBoolean("estado"));
+        }
+        statement.close();
+        
+    } catch (SQLException ex){
+        System.out.println("Error al buscar una mesa: " + ex.getMessage() );
+    }
+    
+    return mesa;
+    }
 }

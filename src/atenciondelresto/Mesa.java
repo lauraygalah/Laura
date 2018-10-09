@@ -15,7 +15,22 @@ public class Mesa {
     private int capacidad;
     private boolean estado;
 
+    public Mesa(int id_mesa, int nro_mesa, int capacidad, boolean estado) {
+        this.id_mesa = id_mesa;
+        this.nro_mesa = nro_mesa;
+        this.capacidad = capacidad;
+        this.estado = estado;
+    }
+
+    public Mesa(int nro_mesa, int capacidad, boolean estado) {
+        id_mesa=-1;
+        this.nro_mesa = nro_mesa;
+        this.capacidad = capacidad;
+        this.estado = estado;
+    }
+
     public Mesa() {
+        id_mesa=-1;
     }
 
     public int getId_mesa() {
@@ -42,47 +57,12 @@ public class Mesa {
         this.capacidad = capacidad;
     }
 
-    public boolean isEstado() {
+    public boolean getEstado() {
         return estado;
     }
 
     public void setEstado(boolean estado) {
         this.estado = estado;
-    }
-
-    public Mesa(int id_mesa, int nro_mesa, int capacidad, boolean estado) {
-        this.id_mesa = id_mesa;
-        this.nro_mesa = nro_mesa;
-        this.capacidad = capacidad;
-        this.estado = estado;
-    }
-
-    int getNroMesa() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    int getcantidad() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    void setId(int aInt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    void setIdMesa(int aInt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    void setNroMesa(int aInt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    void add(Mesa mesa) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    boolean getEstado() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

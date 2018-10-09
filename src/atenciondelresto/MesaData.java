@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  * @author lorei
  */
 public class MesaData {
-    private Connection connection = null;
+    private Connection connection=null;
 
     public MesaData(Conexion conexion) throws SQLException {
         connection = conexion.getConexion();
@@ -31,20 +31,20 @@ public class MesaData {
     public void guardarMesa(Mesa mesa){
         try {
             
-            String sql = "INSERT INTO mesa (id_mesa, nro_mesa, capacidad, estado) VALUES ( ? , ? , ? , ? );";
+            String sql = "INSERT INTO mesa ( nro_mesa, capacidad, estado) VALUES ( ? , ? , ? );";
 
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setInt(1, mesa.getId_mesa());
-            statement.setInt(2, mesa.getNro_mesa());
-            statement.setInt(3, mesa.getCapacidad());
-            statement.setBoolean(4, mesa.getEstado());
+            
+            statement.setInt(1, mesa.getNro_mesa());
+            statement.setInt(2, mesa.getCapacidad());
+            statement.setBoolean(3, mesa.getEstado());
             
             statement.executeUpdate();
             
             ResultSet rs = statement.getGeneratedKeys();
 
             if (rs.next()) {
-                mesa.setId(rs.getInt(1));
+                mesa.setId_mesa(rs.getInt(1));
             } else {
                 System.out.println("No se pudo obtener el id luego de insertar una mesa");
             }
@@ -57,7 +57,6 @@ public class MesaData {
     
     public List<Mesa> obtenerMesa(){
        ArrayList<Mesa> mesas = new ArrayList<>();
-            
 
         try {
             String sql = "SELECT * FROM mesa;";
@@ -66,18 +65,17 @@ public class MesaData {
             Mesa mesa;
             while(resultSet.next()){
                 mesa = new Mesa();
-                mesa.setId(resultSet.getInt("id_mesa"));
+                mesa.setId_mesa(resultSet.getInt("id_mesa"));
                 mesa.setNro_mesa(resultSet.getInt("nro_mesa"));
                 mesa.setCapacidad(resultSet.getInt("capacidad"));
                 mesa.setEstado(resultSet.getBoolean("estado"));
 
-                mesa.add(mesa);
+                mesas.add(mesa);
             }      
             statement.close();
         } catch (SQLException ex) {
             System.out.println("Error al obtener las mesas: " + ex.getMessage());
         }
-      
         
         return mesas;
     } 
@@ -92,8 +90,6 @@ public class MesaData {
             statement.setInt(2 , mesa.getCapacidad());
             statement.setBoolean(3 , mesa.getEstado());
             statement.executeUpdate();
-            
-            
             
             
         } catch (SQLException ex) {
@@ -121,14 +117,10 @@ public class MesaData {
         statement.close();
         
     } catch (SQLException ex){
-        System.out.println("Error al insertar una mesa: " + ex.getMessage() );
+        System.out.println("Error al buscar una mesa: " + ex.getMessage() );
     }
     
     return mesa;
     }
-    
-    
-    
-    
     
 }
