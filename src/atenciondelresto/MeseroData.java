@@ -6,6 +6,7 @@
 package atenciondelresto;
 
 import java.sql.Connection;
+<<<<<<< HEAD
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,17 +15,25 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+=======
+import java.sql.SQLException;
+>>>>>>> 5c1ea5fef5edf217151f49313b6db1c5a5c18482
 
 /**
  *
  * @author lorei
  */
 public class MeseroData {
+<<<<<<< HEAD
      private Connection connection=null;
+=======
+     private Connection connection = null;
+>>>>>>> 5c1ea5fef5edf217151f49313b6db1c5a5c18482
 
     public MeseroData(Conexion conexion) throws SQLException {
         connection = conexion.getConexion();
     }
+<<<<<<< HEAD
     
     
     public void guardarMesero(Mesero mesero){
@@ -117,6 +126,9 @@ public class MeseroData {
     } catch (SQLException ex){
         System.out.println("Error al buscar una mesa: " + ex.getMessage() );
     }
+=======
+   
+>>>>>>> 5c1ea5fef5edf217151f49313b6db1c5a5c18482
     
     return mesa;
     }
