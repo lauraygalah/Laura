@@ -7,8 +7,10 @@ package atenciondelresto;
 
 /**
  *
- * @author lorei
+ * @author Jofre
  */
-public class MeseroData {
+public class Porqueria {
+    private int algo;
+    private String dale = "mierda sali!!!!!";
     
 }
