@@ -17,9 +17,20 @@ public class Reserva {
     private int dni;
     private LocalDate fecha_hora;
     private short estado;
-    private int id_mesa;
+    private int nro_mesa;
 
+   
+     public Reserva(int id_reserva, String nombre, int dni, LocalDate fecha_hora, short estado, int nro_mesa) {
+        this.id_reserva = id_reserva;
+        this.nombre = nombre;
+        this.dni = dni;
+        this.fecha_hora = fecha_hora;
+        this.estado = estado;
+        this.nro_mesa = nro_mesa;
+    }
+    
     public Reserva() {
+        id_reserva = -1;
     }
 
     public int getId_reserva() {
@@ -62,22 +73,11 @@ public class Reserva {
         this.estado = estado;
     }
 
-    public int getId_mesa() {
-        return id_mesa;
+    public int getNro_mesa() {
+        return nro_mesa;
     }
 
-    public void setId_mesa(int id_mesa) {
-        this.id_mesa = id_mesa;
+    public void setNro_mesa(int nro_mesa) {
+        this.nro_mesa = nro_mesa;
     }
-
-    public Reserva(int id_reserva, String nombre, int dni, LocalDate fecha_hora, short estado, int id_mesa) {
-        this.id_reserva = id_reserva;
-        this.nombre = nombre;
-        this.dni = dni;
-        this.fecha_hora = fecha_hora;
-        this.estado = estado;
-        this.id_mesa = id_mesa;
-    }
-    
-    
 }
