@@ -11,21 +11,40 @@ package atenciondelresto;
  */
 public class PedidoDetalle {
     
-    private int pedidodetalle;
+    private int id_pedidoDetalle;
     private short cantidad;
     private int id_pedido;
     private int id_producto;
-    private float precio;
+    private double precio_unitario;
+    
+     public PedidoDetalle(int id_pedidoDetalle, short cantidad, int id_pedido, int id_producto, double precio_unitario) {
+        this.id_pedidoDetalle = id_pedidoDetalle;
+        this.cantidad = cantidad;
+        this.id_pedido = id_pedido;
+        this.id_producto = id_producto;
+        this.precio_unitario = precio_unitario;
+    }
+
+    public PedidoDetalle(short cantidad, int id_pedido, int id_producto, double precio) {
+        id_pedidoDetalle = -1;       
+        this.cantidad = cantidad;
+        this.id_pedido = id_pedido;
+        this.id_producto = id_producto;
+        this.precio_unitario = precio_unitario;
+    }
+     
+     
 
     public PedidoDetalle() {
+        id_pedidoDetalle = -1;
     }
 
-    public int getPedidodetalle() {
-        return pedidodetalle;
+    public int getId_PedidoDetalle() {
+        return id_pedidoDetalle;
     }
 
-    public void setPedidodetalle(int pedidodetalle) {
-        this.pedidodetalle = pedidodetalle;
+    public void setId_pedidoDetalle(int id_pedidoDetalle) {
+        this.id_pedidoDetalle = id_pedidoDetalle;
     }
 
     public short getCantidad() {
@@ -52,20 +71,11 @@ public class PedidoDetalle {
         this.id_producto = id_producto;
     }
 
-    public float getPrecio() {
-        return precio;
+    public double getPrecio_unitario() {
+        return precio_unitario;
     }
 
-    public void setPrecio(float precio) {
-        this.precio = precio;
+    public void setPrecio_unitario(double precio_unitario) {
+        this.precio_unitario = precio_unitario;
     }
-
-    public PedidoDetalle(int pedidodetalle, short cantidad, int id_pedido, int id_producto, float precio) {
-        this.pedidodetalle = pedidodetalle;
-        this.cantidad = cantidad;
-        this.id_pedido = id_pedido;
-        this.id_producto = id_producto;
-        this.precio = precio;
-    }
-    
 }

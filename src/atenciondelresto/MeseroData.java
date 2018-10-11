@@ -125,14 +125,12 @@ public class MeseroData {
             
             String sql = "DELETE FROM mesero WHERE nombre =?;";
 
-            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, nombre);
-           
+            
             
             statement.executeUpdate();
-            
-            
-            statement.close();
+        }
     
         } catch (SQLException ex) {
             System.out.println("Error al borrar una mesero: " + ex.getMessage());

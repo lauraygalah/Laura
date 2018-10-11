@@ -14,7 +14,20 @@ public class Mesero {
     private String nombre;
     private int dni;
 
+     public Mesero(int id_mesero, String nombre, int dni) {
+        this.id_mesero = id_mesero;
+        this.nombre = nombre;
+        this.dni = dni;
+    }
+
+    public Mesero(String nombre, int dni) {
+         id_mesero =-1;
+        this.nombre = nombre;
+        this.dni = dni;
+    }
+     
     public Mesero() {
+        id_mesero = -1;
     }
 
     public int getId_mesero() {
@@ -38,12 +51,6 @@ public class Mesero {
     }
 
     public void setDni(int dni) {
-        this.dni = dni;
-    }
-
-    public Mesero(int id_mesero, String nombre, int dni) {
-        this.id_mesero = id_mesero;
-        this.nombre = nombre;
         this.dni = dni;
     }
     
