@@ -22,8 +22,7 @@ public class Mesero {
     }
 
     public Mesero(String nombre, int dni) {
-
-         id_mesero =-1;
+        
         this.nombre = nombre;
         this.dni = dni;
     }

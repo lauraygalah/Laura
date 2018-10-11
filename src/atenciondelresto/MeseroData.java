@@ -83,19 +83,22 @@ public class MeseroData {
     public void actualizarMesero(Mesero mesero){
         
         try {
-            String sql = "UPDATE mesa SET nombre = ? , dni = ? ;";
-
+            
+            String sql = "UPDATE mesero SET nombre = ?, dni = ? WHERE id_mesero = ?;";
+            
             PreparedStatement statement=connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1 , mesero.getNombre());
             statement.setInt(2 , mesero.getDni());
+            statement.setInt(3, mesero.getId_mesero());
             statement.executeUpdate();
             
-            
+         statement.close();   
         } catch (SQLException ex) {
             Logger.getLogger(MeseroData.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
+    
     public Mesero buscarMesero(String nombre){
     Mesero mesero=null;
     try{
@@ -111,7 +114,11 @@ public class MeseroData {
                 mesero = new Mesero();
                 mesero.setNombre(resultset.getString("nombre"));
                 mesero.setDni(resultset.getInt("dni"));
-            }   }
+                mesero.setId_mesero(resultset.getInt("id_mesero"));
+                
+            }  
+            statement.close();
+        }
         
     } catch (SQLException ex){
         System.out.println("Error al buscar un mesero: " + ex.getMessage() );
