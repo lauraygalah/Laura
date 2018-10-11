@@ -73,7 +73,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jMenuItem2.setText("jMenuItem2");
+        jMenuItem2.setText("Mesero");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);

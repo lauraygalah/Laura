@@ -18,6 +18,13 @@ public class Pedido {
     private int id_mesa;
     private int id_mesero;
 
+      public Pedido(int id_pedido, LocalDate fecha_hora, int id_mesa, int id_mesero) {
+        this.id_pedido = id_pedido;
+        this.fecha_hora = fecha_hora;
+        this.id_mesa = id_mesa;
+        this.id_mesero = id_mesero;
+    }
+      
     public Pedido() {
     }
 
@@ -53,11 +60,10 @@ public class Pedido {
         this.id_mesero = id_mesero;
     }
 
-    public Pedido(int id_pedido, LocalDate fecha_hora, int id_mesa, int id_mesero) {
-        this.id_pedido = id_pedido;
-        this.fecha_hora = fecha_hora;
-        this.id_mesa = id_mesa;
-        this.id_mesero = id_mesero;
+    void setfecha(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+  
     
 }

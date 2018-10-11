@@ -100,7 +100,7 @@ public class MeseroData {
     Mesero mesero=null;
     try{
         
-        String sql = "SELEC * FROM mesero WHERE nombre =?;";
+        String sql = "SELECT * FROM mesero WHERE nombre = ?;";
         
         try (PreparedStatement statement = connection.prepareStatement(sql ,Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, nombre);
