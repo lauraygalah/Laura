@@ -110,7 +110,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-System.out.println("HOLAAAAAAA");
         escritorio.removeAll();
         escritorio.repaint();
         VistaMesa vm = new VistaMesa();
@@ -129,10 +128,6 @@ System.out.println("HOLAAAAAAA");
 
     private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
         
-
-
-
-
 
 
 // TODO add your handling code here:
