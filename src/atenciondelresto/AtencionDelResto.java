@@ -27,12 +27,12 @@ public class AtencionDelResto {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(AtencionDelResto.class.getName()).log(Level.SEVERE, null, ex);
         }
-       // Guarda una mesa
-       /*Mesa mesa=new Mesa(1,4,true);
-       mesaData.guardarMesa(mesa);*/
+        //Guarda una mesa
+       Mesa mesa=new Mesa(1,4,true);
+       mesaData.guardarMesa(mesa);
        
        // Busca y actualiza una mesaa
-       Mesa mesa=mesaData.buscarMesa(4);
+        mesa=mesaData.buscarMesa(4);
        System.out.println(mesa.getEstado());
        //mesa.setEstado(true);
        //mesaData.actualizarMesa(mesa);

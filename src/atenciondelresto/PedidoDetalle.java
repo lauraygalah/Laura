@@ -25,7 +25,7 @@ public class PedidoDetalle {
         this.precio_unitario = precio_unitario;
     }
 
-    public PedidoDetalle(short cantidad, int id_pedido, int id_producto, double precio) {
+    public PedidoDetalle(short cantidad, int id_pedido, int id_producto, double precio_unitario) {
         id_pedidoDetalle = -1;       
         this.cantidad = cantidad;
         this.id_pedido = id_pedido;
@@ -78,4 +78,9 @@ public class PedidoDetalle {
     public void setPrecio_unitario(double precio_unitario) {
         this.precio_unitario = precio_unitario;
     }
+    
+     public double calculoSubtotal(){
+             
+        return this.getCantidad() * this.getPrecio_unitario();
+     }
 }

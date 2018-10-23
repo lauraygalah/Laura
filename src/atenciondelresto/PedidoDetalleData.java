@@ -56,23 +56,4 @@ public class PedidoDetalleData {
             System.out.println("Error al insertar un producto: "+ ex.getMessage());
         }
      }
-    
-    public void quitarProducto(int id_producto) {
-         try {
-            
-            String sql = "DELETE FROM pedidoDetalle WHERE id_producto=?;";
-
-          PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-          statement.setInt(1, id_producto);
-          
-          statement.executeUpdate();
-         }
-         catch(SQLException ex){
-             System.out.println("Error al borrar un producto "+ ex.getMessage());
-         }
-    }
-    
-    public double calculoSubtotal(PedidoDetalle pedidoDetalle){
-        return pedidoDetalle.getCantidad() * pedidoDetalle.getPrecio_unitario();
-    }
-}   
+   }
