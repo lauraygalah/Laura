@@ -135,9 +135,39 @@ Toolkit miPantalla=Toolkit.getDefaultToolkit();
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+<<<<<<< HEAD
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         //crea una instancia nueva de la vista mesero, la agrega al escritorio
         //y la lleva al frente
+=======
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        VistaMesa vm = new VistaMesa();
+        vm.setVisible(true);
+        escritorio.add(vm);
+        escritorio.moveToFront(vm);
+           
+
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+        
+// TODO add your handling code here:
+    }//GEN-LAST:event_jMenu1ActionPerformed
+
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+        
+
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_jMenu2ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+escritorio.removeAll();
+        escritorio.repaint();
+>>>>>>> d7aaa8ca93d6274c95a976dda36fd85aa3f8f00b
         VistaMesero vm = new VistaMesero();
         vm.setVisible(true);
         escritorio2.add(vm);
