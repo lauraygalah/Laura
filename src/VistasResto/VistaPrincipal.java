@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  * @author Exabyte
  */
 public class VistaPrincipal extends javax.swing.JFrame {
-Toolkit miPantalla=Toolkit.getDefaultToolkit();
+    Toolkit miPantalla=Toolkit.getDefaultToolkit();
     Dimension tamaño=miPantalla.getScreenSize();
     MeseroData meseroData;
     Conexion conexion;
@@ -26,7 +26,9 @@ Toolkit miPantalla=Toolkit.getDefaultToolkit();
     public VistaPrincipal() {
         initComponents();
         try {
+            //Creo una nueva conexion, y le paso la ruta de mi base de datos.
             conexion = new Conexion("jdbc:mysql://localhost/resto", "root", "");
+            //Creo una instancia de mesero data y la paso la conexion.
             meseroData = new MeseroData(conexion);
        
         } catch (ClassNotFoundException ex) {
@@ -135,39 +137,8 @@ Toolkit miPantalla=Toolkit.getDefaultToolkit();
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-<<<<<<< HEAD
-    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        //crea una instancia nueva de la vista mesero, la agrega al escritorio
-        //y la lleva al frente
-=======
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        escritorio.removeAll();
-        escritorio.repaint();
-        VistaMesa vm = new VistaMesa();
-        vm.setVisible(true);
-        escritorio.add(vm);
-        escritorio.moveToFront(vm);
-           
-
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
-        
-// TODO add your handling code here:
-    }//GEN-LAST:event_jMenu1ActionPerformed
-
-    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
-        
-
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_jMenu2ActionPerformed
-
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-escritorio.removeAll();
-        escritorio.repaint();
->>>>>>> d7aaa8ca93d6274c95a976dda36fd85aa3f8f00b
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {                                             
+        //Creo una instancia de vistaMesero, la hago visible y la agrego al escritorio.
         VistaMesero vm = new VistaMesero();
         vm.setVisible(true);
         escritorio2.add(vm);
@@ -175,20 +146,37 @@ escritorio.removeAll();
         //seguido de eso, bloqueo los botones, registrar y entrar.
         btnRegistrar.setEnabled(false);
         btnEntrar.setEnabled(false);
-        
-    }//GEN-LAST:event_btnRegistrarActionPerformed
 
+    }
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+    }//GEN-LAST:event_jMenu1ActionPerformed
+
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+    }//GEN-LAST:event_jMenu2ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {                                           
+    }                                            
+    //********Metodo del Boton Entrar******************
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
+        //En este metodo comprobamos si el mesero se encuentra en la base 
+        //de datos de lo contrario le pedimos que se registre.
         int i = 0;
         String dnis;
         String nombre=txtApellido.getText();
+        System.out.println("hasta aca");
         List<Mesero> meseros=meseroData.obtenerMesero();
+        System.out.println("aca ...");
         for(Mesero m:meseros){
             dnis=m.getDni()+"";
             if(m.getNombre().equalsIgnoreCase(nombre)&&dnis.equalsIgnoreCase(txtDni.getText()) ){
+                System.out.println("o aca...");
+                JOptionPane.showMessageDialog(null, nombre);
                 VistaMenu vm=new VistaMenu();
                 vm.setVisible(true);
-                this.setVisible(false);
+                //hace que la ventana se cierre.
+                this.dispose();
                 i=1;
             }
         }
